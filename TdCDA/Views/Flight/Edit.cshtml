@@ -34,12 +34,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdDepartureCity" class="control-label">Ville de départ</label>
-                <input asp-for="IdDepartureCity" class="form-control" />
-                <span asp-validation-for="IdDepartureCity" class="text-danger"></span>
+                <select asp-for="IdDepartureCity" class="form-control" asp-items="ViewBag.IdDepartureCity"></select>
             </div>
             <div class="form-group">
                 <label asp-for="IdArrivalCity" class="control-label">Ville d'arrivée</label>
-                <input asp-for="IdArrivalCity" class="form-control" />
+                <select asp-for="IdArrivalCity" class="form-control" asp-items="ViewBag.IdArrivalCity"></select>
                 <span asp-validation-for="IdArrivalCity" class="text-danger"></span>
             </div>
             <div class="form-group">

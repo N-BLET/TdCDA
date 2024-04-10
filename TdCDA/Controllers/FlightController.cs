@@ -123,18 +123,13 @@ namespace TdCDA.Controllers
         // GET: FlightController/Edit/id
         public ActionResult Edit(string id)
         {
+
             client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = client.Get("Flights/" + id);
             Flight flight = JsonConvert.DeserializeObject<Flight>(response.Body);
 
-            FirebaseResponse DepartureCityResponse = client.Get("Cities/" + flight.IdDepartureCity);
-            City? depCity = JsonConvert.DeserializeObject<City>(DepartureCityResponse.Body);
-
-            FirebaseResponse ArrivalCityResponse = client.Get("Cities/" + flight.IdArrivalCity);
-            City? arrCity = JsonConvert.DeserializeObject<City>(ArrivalCityResponse.Body);
-
-            flight.IdArrivalCity = arrCity.Name;
-            flight.IdDepartureCity = depCity.Name;
+            ViewData["IdDepartureCity"] = new SelectList(GetListCities(), "IdCity", "Name", flight.IdDepartureCity);
+            ViewData["IdArrivalCity"] = new SelectList(GetListCities(), "IdCity", "Name", flight.IdArrivalCity);
 
             return View(flight);
         }
@@ -144,8 +139,15 @@ namespace TdCDA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Flight flight)
         {
+            if (flight.IdDepartureCity == flight.IdArrivalCity)
+            {
+                ModelState.AddModelError("IdArrivalCity", "La ville de départ et d'arrivée ne peuvent pas être identiques.");
+                ViewData["IdDepartureCity"] = new SelectList(GetListCities(), "IdCity", "Name", flight.IdDepartureCity);
+                ViewData["IdArrivalCity"] = new SelectList(GetListCities(), "IdCity", "Name", flight.IdArrivalCity);
+                return View(flight);
+            }
             client = new FireSharp.FirebaseClient(config);
-            FirebaseResponse response = client.Set("Livres/" + flight.IdFlight, flight);
+            FirebaseResponse response = client.Set("Flights/" + flight.IdFlight, flight);
             return RedirectToAction("Index");
         }
 
