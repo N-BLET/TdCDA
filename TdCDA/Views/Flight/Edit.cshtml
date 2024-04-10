@@ -47,11 +47,12 @@
             </div>
         </form>
     </div>
+    <div>
+        <a asp-action="Index">Retour à la liste</a>
+    </div>
 </div>
 
-<div>
-    <a asp-action="Index">Retour à la liste</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

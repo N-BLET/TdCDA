@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\img\air-france-logo-vector.svg" />
+    <None Include="wwwroot\img\XVM503ad628-58f2-11e8-a38b-b899296a5106.webp" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FireSharp" Version="2.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
