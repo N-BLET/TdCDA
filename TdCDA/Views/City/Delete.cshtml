@@ -24,9 +24,11 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <form asp-action="Delete">
-            <input type="submit" value="Supprimer" class="btn btn-danger" /> |
-            <a asp-action="Index">Retour à la liste</a>
+            <input type="submit" value="Supprimer" class="btn btn-danger" />
         </form>
+        <div>
+            <a asp-action="Index">Retour à la liste</a>
+        </div>
     </dl>
     
 </div>

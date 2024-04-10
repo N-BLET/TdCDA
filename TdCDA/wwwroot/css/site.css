@@ -48,3 +48,12 @@ label{
     margin-top: 20px;
 }
 
+.newButton {
+    color: white;
+    text-decoration: none;
+}
+
+.newButton:hover{
+    color: white
+}
+
