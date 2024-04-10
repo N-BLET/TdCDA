@@ -4,31 +4,31 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>LISTE DES VOLS</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Ajouter un vol</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @* <th>
                 @Html.DisplayNameFor(model => model.IdFlight)
+            </th> *@
+            <th>
+                Référence
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Reference)
+               Date de départ
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DepartureDate)
+                Date d'arrivée
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArrivalDate)
+                Ville de départ
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdDepartureCity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdArrivalCity)
+                Ville d'arrivée
             </th>
             <th></th>
         </tr>
@@ -36,9 +36,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            @* <td>
                 @Html.DisplayFor(modelItem => item.IdFlight)
-            </td>
+            </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.Reference)
             </td>
@@ -55,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.IdArrivalCity)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Modifier", "Edit", new { id=item.IdFlight }) |
+                @Html.ActionLink("Afficher", "Details", new { id=item.IdFlight }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.IdFlight })
             </td>
         </tr>
 }

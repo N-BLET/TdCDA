@@ -4,53 +4,53 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>MODIFIER</h1>
 
-<h4>Flight</h4>
+<h4>Vol</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="IdFlight" class="control-label"></label>
-                <input asp-for="IdFlight" class="form-control" />
+                <label asp-for="IdFlight" class="control-label">Identifiant du vol</label>
+                <input asp-for="IdFlight" readonly class="form-control" />
                 <span asp-validation-for="IdFlight" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Reference" class="control-label"></label>
+                <label asp-for="Reference" class="control-label">Référence</label>
                 <input asp-for="Reference" class="form-control" />
                 <span asp-validation-for="Reference" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DepartureDate" class="control-label"></label>
+                <label asp-for="DepartureDate" class="control-label">Date et heure de départ</label>
                 <input asp-for="DepartureDate" class="form-control" />
                 <span asp-validation-for="DepartureDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ArrivalDate" class="control-label"></label>
+                <label asp-for="ArrivalDate" class="control-label">Date et heure d'arrivée</label>
                 <input asp-for="ArrivalDate" class="form-control" />
                 <span asp-validation-for="ArrivalDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdDepartureCity" class="control-label"></label>
+                <label asp-for="IdDepartureCity" class="control-label">Ville de départ</label>
                 <input asp-for="IdDepartureCity" class="form-control" />
                 <span asp-validation-for="IdDepartureCity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdArrivalCity" class="control-label"></label>
+                <label asp-for="IdArrivalCity" class="control-label">Ville d'arrivée</label>
                 <input asp-for="IdArrivalCity" class="form-control" />
                 <span asp-validation-for="IdArrivalCity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Enregistrer" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Retour à la liste</a>
 </div>
 
 @section Scripts {
