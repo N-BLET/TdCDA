@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TdCDA.Models.City>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des villes</h1>
+
+<p>
+    <a asp-action="Create">Ajouter une ville</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>
+                @Html.DisplayNameFor(model => model.IdCity)
+            </th> *@
+            <th>
+                Nom de la ville
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.IdCity)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id=item.IdCity }) |
+                    @Html.ActionLink("Afficher", "Details", new { id = item.IdCity }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.IdCity })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
