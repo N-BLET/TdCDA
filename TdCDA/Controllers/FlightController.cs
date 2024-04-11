@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using TdCDA.Models;
+using TdCDA.Manager;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace TdCDA.Controllers
@@ -26,7 +27,7 @@ namespace TdCDA.Controllers
             client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = client.Get("Flights");
             dynamic? data = JsonConvert.DeserializeObject<dynamic>(response.Body);
-            var list = new List<Flight>();
+            var list = new List<FlightManager>();
             if (data != null)
             {
                 foreach (var item in data)
@@ -38,10 +39,9 @@ namespace TdCDA.Controllers
                     FirebaseResponse ArrivalCityResponse = client.Get("Cities/" + flight.IdArrivalCity);
                     City? arrCity = JsonConvert.DeserializeObject<City>(ArrivalCityResponse.Body);
 
-                    flight.IdArrivalCity = arrCity.Name;
-                    flight.IdDepartureCity = depCity.Name;
+                    FlightController flightController = new FlightController(flight, depCity.Name, arrCity.Name);
 
-                    list.Add(flight);
+                    list.Add(flightController);
                     
                 }
             }
