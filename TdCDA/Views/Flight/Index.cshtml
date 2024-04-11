@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TdCDA.Models.Flight>
+﻿@model IEnumerable<TdCDA.Manager.FlightManager>
 
 @{
     ViewData["Title"] = "Index";
@@ -43,19 +43,19 @@
                 @Html.DisplayFor(modelItem => item.IdFlight)
             </td> *@
             <td>
-                @Html.DisplayFor(modelItem => item.Reference)
+                @Html.DisplayFor(modelItem => item.Flight.Reference)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DepartureDate)
+                @Html.DisplayFor(modelItem => item.Flight.DepartureDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ArrivalDate)
+                @Html.DisplayFor(modelItem => item.Flight.ArrivalDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdDepartureCity)
+                @Html.DisplayFor(modelItem => item.DepartureCityName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdArrivalCity)
+                @Html.DisplayFor(modelItem => item.ArrivalCityName)
             </td>
             <td>
                 @Html.ActionLink("Modifier", "Edit", new { id=item.IdFlight }) |
