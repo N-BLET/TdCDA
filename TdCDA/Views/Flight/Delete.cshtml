@@ -1,4 +1,4 @@
-﻿@model TdCDA.Models.Flight
+﻿@model TdCDA.Manager.FlightManager
 
 @{
     ViewData["Title"] = "Delete";
@@ -15,37 +15,37 @@
             Identifiant du vol
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdFlight)
+            @Html.DisplayFor(model => model.Flight.IdFlight)
         </dd>
         <dt class = "col-sm-2">
             Référence
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Reference)
+            @Html.DisplayFor(model => model.Flight.Reference)
         </dd>
         <dt class = "col-sm-2">
             Date et heure de départ
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DepartureDate)
+            @Html.DisplayFor(model => model.Flight.DepartureDate)
         </dd>
         <dt class = "col-sm-2">
             Date et heure d'arrivée
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArrivalDate)
+            @Html.DisplayFor(model => model.Flight.ArrivalDate)
         </dd>
         <dt class = "col-sm-2">
             Ville de départ
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdDepartureCity)
+            @Html.DisplayFor(model => model.DepartureCityName)
         </dd>
         <dt class = "col-sm-2">
             Ville d'arrivée
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdArrivalCity)
+            @Html.DisplayFor(model => model.ArrivalCityName)
         </dd>
         <form asp-action="Delete">
             <input type="submit" value="Supprimer" class="btn btn-danger" />

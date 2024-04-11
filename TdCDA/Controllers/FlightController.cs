@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using TdCDA.Models;
 using TdCDA.Manager;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace TdCDA.Controllers
 {
@@ -39,7 +40,7 @@ namespace TdCDA.Controllers
                     FirebaseResponse ArrivalCityResponse = client.Get("Cities/" + flight.IdArrivalCity);
                     City? arrCity = JsonConvert.DeserializeObject<City>(ArrivalCityResponse.Body);
 
-                    FlightController flightController = new FlightController(flight, depCity.Name, arrCity.Name);
+                    FlightManager flightController = new FlightManager(flight, depCity.Name, arrCity.Name);
 
                     list.Add(flightController);
                     
@@ -66,10 +67,9 @@ namespace TdCDA.Controllers
             FirebaseResponse ArrivalCityResponse = client.Get("Cities/" + flight.IdArrivalCity);
             City? arrCity = JsonConvert.DeserializeObject<City>(ArrivalCityResponse.Body);
 
-            flight.IdArrivalCity = arrCity.Name;
-            flight.IdDepartureCity = depCity.Name;
+            FlightManager flightController = new FlightManager(flight, depCity.Name, arrCity.Name);
 
-            return View(flight);
+            return View(flightController);
         }
 
 /*------------------------------------------------------- CREATE ------------------------------------------------------
@@ -168,10 +168,9 @@ namespace TdCDA.Controllers
             FirebaseResponse ArrivalCityResponse = client.Get("Cities/" + flight.IdArrivalCity);
             City? arrCity = JsonConvert.DeserializeObject<City>(ArrivalCityResponse.Body);
 
-            flight.IdArrivalCity = arrCity.Name;
-            flight.IdDepartureCity = depCity.Name;
+            FlightManager flightController = new FlightManager(flight, depCity.Name, arrCity.Name);
 
-            return View(flight);
+            return View(flightController);
         }
 
         // POST: FlightController/Delete/5

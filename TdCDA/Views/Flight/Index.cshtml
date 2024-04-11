@@ -58,9 +58,9 @@
                 @Html.DisplayFor(modelItem => item.ArrivalCityName)
             </td>
             <td>
-                @Html.ActionLink("Modifier", "Edit", new { id=item.IdFlight }) |
-                @Html.ActionLink("Afficher", "Details", new { id=item.IdFlight }) |
-                @Html.ActionLink("Supprimer", "Delete", new { id = item.IdFlight })
+                @Html.ActionLink("Modifier", "Edit", new { id=item.Flight.IdFlight }) |
+                    @Html.ActionLink("Afficher", "Details", new { id = item.Flight.IdFlight }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.Flight.IdFlight })
             </td>
         </tr>
 }
