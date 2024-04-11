@@ -1,31 +1,23 @@
-﻿using FireSharp.Config;
-using FireSharp.Interfaces;
+﻿using FireSharp.Interfaces;
 using FireSharp.Response;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using TdCDA.Models;
 using TdCDA.Manager;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
+
 
 namespace TdCDA.Controllers
 {
     public class FlightController : Controller
     {
-        IFirebaseClient? client;
-        // Interface de manipulation de la BDD Firebase
-        IFirebaseConfig config = new FirebaseConfig
-        {
-            AuthSecret = "ZkMCzQKJrloO6GDnEWlx5qcwJjHJaNZ8ZcNZ2yaO",
-            BasePath = "https://bddtdcda-default-rtdb.europe-west1.firebasedatabase.app"
-        };
+        IFirebaseClient client = ConfigBddManager.GetClient();
 
         // GET: FlightController
         public ActionResult Index()
         {
-            client = new FireSharp.FirebaseClient(config);
+            
             FirebaseResponse response = client.Get("Flights");
             dynamic? data = JsonConvert.DeserializeObject<dynamic>(response.Body);
             var list = new List<FlightManager>();
@@ -57,7 +49,7 @@ namespace TdCDA.Controllers
         // GET: FlightController/Details/id
         public ActionResult Details(string id)
         {
-            client = new FireSharp.FirebaseClient(config);
+            
             FirebaseResponse response = client.Get("Flights/" + id);
             Flight? flight = JsonConvert.DeserializeObject<Flight>(response.Body);
 
@@ -97,7 +89,6 @@ namespace TdCDA.Controllers
             }
             try
             {
-                client = new FireSharp.FirebaseClient(config);
                 var data = flight;
                 PushResponse response = client.Push("Flights/", flight);
                 flight.IdFlight = response.Result.name;
@@ -123,8 +114,6 @@ namespace TdCDA.Controllers
         // GET: FlightController/Edit/id
         public ActionResult Edit(string id)
         {
-
-            client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = client.Get("Flights/" + id);
             Flight flight = JsonConvert.DeserializeObject<Flight>(response.Body);
 
@@ -146,7 +135,6 @@ namespace TdCDA.Controllers
                 ViewData["IdArrivalCity"] = new SelectList(GetListCities(), "IdCity", "Name", flight.IdArrivalCity);
                 return View(flight);
             }
-            client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = client.Set("Flights/" + flight.IdFlight, flight);
             return RedirectToAction("Index");
         }
@@ -158,7 +146,6 @@ namespace TdCDA.Controllers
         // GET: FlightController/Delete/id
         public ActionResult Delete(string id)
         {
-            client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = client.Get("Flights/" + id);
             Flight flight = JsonConvert.DeserializeObject<Flight>(response.Body);
 
@@ -178,7 +165,6 @@ namespace TdCDA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string id, Flight flight)
         {
-            client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = client.Delete("Flights/" + id);
             return RedirectToAction("Index");
         }
@@ -191,7 +177,6 @@ namespace TdCDA.Controllers
         {
             var list = new List<City>();
 
-            client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = client.Get("Cities");
             dynamic? data = JsonConvert.DeserializeObject<dynamic>(response.Body);
 
@@ -208,7 +193,6 @@ namespace TdCDA.Controllers
         // 
         private City GetCityById(string cityId)
         {
-            client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = client.Get("Cities/" + cityId);
             return response.ResultAs<City>();
         }
